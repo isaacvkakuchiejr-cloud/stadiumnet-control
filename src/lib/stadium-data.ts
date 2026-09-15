@@ -134,7 +134,7 @@ function buildDevices(): Device[] {
     for (let i = 0; i < group.count; i++) {
       const n = (counters[group.type] = (counters[group.type] ?? 0) + 1);
       const locations = ZONE_LOCATIONS[group.zone];
-      const location = locations[i % locations.length];
+      const location = locations[i % locations.length] ?? "Concourse";
       const roll = rand();
       const status: Status = roll > 0.93 ? "offline" : roll > 0.82 ? "degraded" : "online";
       const base = status === "online" ? 6 + rand() * 22 : status === "degraded" ? 90 + rand() * 140 : 0;
